@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trezor Connect Example</title>
+    <script src="https://connect.trezor.io/9/trezor-connect.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trezor Connect Example</h1>
+    
+    <label for="derivationPath">Derivation Path:</label>
+    <input type="text" id="derivationPath" value="m/44'/0'/0'/0/0">
+    
+    <label for="passphrase">Passphrase (optional):</label>
+    <input type="password" id="passphrase">
+    
+    <button id="getPublicKey">Get Public Key</button>
+    
+    <div id="result"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            TrezorConnect.init({
+                lazyLoad: true,
+                manifest: {
+                    email: 'developer@example.com',
+                    appUrl: 'https://example.com'
+                }
+            });
+
+            document.getElementById('getPublicKey').addEventListener('click', async function() {
+                const derivationPath = document.getElementById('derivationPath').value;
+                const passphrase = document.getElementById('passphrase').value;
+
+                try {
+                    const result = await TrezorConnect.getPublicKey({
+                        path: derivationPath,
+                        coin: 'btc',
+                        useEmptyPassphrase: !passphrase,
+                        showOnTrezor: true
+                    });
+
+                    if (result.success) {
+                        document.getElementById('result').innerText = `
+                            Public Key: ${result.payload.publicKey}
+                            xpub: ${result.payload.xpub}
+                            xpubSegwit: ${result.payload.xpubSegwit}
+                        `;
+                    } else {
+                        document.getElementById('result').innerText = `Error: ${result.payload.error}`;
+                    }
+                } catch (error) {
+                    document.getElementById('result').innerText = `Error: ${error.message}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

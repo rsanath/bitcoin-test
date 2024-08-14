@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@safe-global/api-kit": "^2.3.0",
+    "@safe-global/protocol-kit": "^3.0.2",
+    "@safe-global/safe-core-sdk-types": "^4.0.2",
+    "@trezor/connect": "^9.3.0",
+    "axios": "^1.6.8",
+    "base-58": "^0.0.1",
+    "bip32": "^4.0.0",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^6.1.5",
+    "bs58": "^6.0.0",
+    "bs58check": "^4.0.0",
+    "coinselect": "^3.1.13",
+    "dotenv": "^16.4.5",
+    "ecpair": "^2.1.0",
+    "ethers": "^6.12.0",
+    "express": "^4.19.2",
+    "tiny-secp256k1": "^2.2.3"
+  }
+}
