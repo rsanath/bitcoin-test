@@ -45,7 +45,7 @@ async function getPublicKey() {
         });
 
         // Specify the HD wallet path (e.g., m/44'/0'/0'/0)
-        const path = "m/44'/0'/0'/0";
+        const path = "m/49'/0";
 
         // Call TrezorConnect to get the public key
         const response = await TrezorConnect.getPublicKey({

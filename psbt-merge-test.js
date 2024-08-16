@@ -76,7 +76,7 @@ signers.slice(0, 2).forEach((signer, index) => {
 });
 psbt1.finalizeAllInputs();
 const txHex1 = psbt1.extractTransaction().toHex();
-console.log("psbt1 signature");
+console.log("noramal signature");
 console.log(txHex1, "\n");
 
 const individualSignatures = [];
@@ -96,5 +96,5 @@ for (const hex of individualSignatures) {
 }
 psbt2.finalizeAllInputs()
 const txHex2 = psbt2.extractTransaction().toHex()
-console.log("psbt2 signature");
+console.log("merged signature");
 console.log(txHex2, "\n");

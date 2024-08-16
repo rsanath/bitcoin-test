@@ -23,7 +23,7 @@ function deriveAddress(extendedPublicKey, index) {
     network: network,
   });
   return address;
-}p
+}
 
 const mnemonic = "endorse muffin husband refuse shoe extra come flame farm alert age maze";
 // const mnemonic = bip39.generateMnemonic();
