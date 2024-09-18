@@ -7,13 +7,17 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "@safe-global/api-kit": "^2.3.0",
-    "@safe-global/protocol-kit": "^3.0.2",
-    "@safe-global/safe-core-sdk-types": "^4.0.2",
+    "@ledgerhq/hw-app-btc": "^10.4.1",
+    "@ledgerhq/hw-transport-node-hid": "^6.29.3",
+    "@ledgerhq/hw-transport-webusb": "^6.29.2",
+    "@safe-global/api-kit": "^2.4.4",
+    "@safe-global/protocol-kit": "^4.0.4",
+    "@safe-global/safe-core-sdk-types": "^5.0.3",
     "@trezor/connect": "^9.3.0",
     "axios": "^1.6.8",
     "base-58": "^0.0.1",
     "bip32": "^4.0.0",
+    "bip32-path": "^0.4.2",
     "bip39": "^3.1.0",
     "bitcoinjs-lib": "^6.1.5",
     "bs58": "^6.0.0",
@@ -23,6 +27,9 @@
     "ecpair": "^2.1.0",
     "ethers": "^6.12.0",
     "express": "^4.19.2",
+    "isomorphic-fetch": "^3.0.0",
+    "lodash": "^4.17.21",
+    "ramda": "^0.30.1",
     "tiny-secp256k1": "^2.2.3"
   }
 }

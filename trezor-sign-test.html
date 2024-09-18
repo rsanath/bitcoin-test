@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trezor Connect Example</title>
+    <script src="https://connect.trezor.io/9/trezor-connect.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      input,
+      button {
+        margin: 10px 0;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Sign Data Using Trezor</h1>
+      <form id="signDataForm">
+        <label for="bipPath">BIP32 Path:</label>
+        <input type="text" id="bipPath" name="bipPath" placeholder="m/44'/60'/0'" required>
+        <br><br>
+
+        <label for="domainName">Domain Name:</label>
+        <input type="text" id="domainName" name="domainName" placeholder="example.trezor.io" required>
+        <br><br>
+
+        <label for="messageName">Message Name:</label>
+        <input type="text" id="messageName" name="messageName" placeholder="Best Wallet" required>
+        <br><br>
+
+        <label for="messageValue">Message Value:</label>
+        <input type="text" id="messageValue" name="messageValue" placeholder="Trezor Model T" required>
+        <br><br>
+
+        <label for="messageNumber">Message Number:</label>
+        <input type="number" id="messageNumber" name="messageNumber" placeholder="Value" required>
+        <br><br>
+
+        <label for="metamaskCompat">MetaMask v4 Compatibility:</label>
+        <input type="checkbox" id="metamaskCompat" name="metamaskCompat" checked>
+        <br><br>
+
+        <input type="submit" value="Sign Data">
+    </form>
+
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        TrezorConnect.init({
+          lazyLoad: true,
+          manifest: {
+            email: "developer@example.com",
+            appUrl: "https://example.com",
+          },
+        });
+
+        document
+          .getElementById("getPublicKey")
+          .addEventListener("click", async function () {
+            const derivationPath =
+              document.getElementById("derivationPath").value;
+            const passphrase = document.getElementById("passphrase").value;
+
+            try {
+              const result = await TrezorConnect.getPublicKey({
+                path: derivationPath,
+                coin: "btc",
+                useEmptyPassphrase: !passphrase,
+                showOnTrezor: true,
+              });
+
+              if (result.success) {
+                document.getElementById("result").innerText = `
+                            Public Key: ${result.payload.publicKey}
+                            xpub: ${result.payload.xpub}
+                            xpubSegwit: ${result.payload.xpubSegwit}
+                        `;
+              } else {
+                document.getElementById(
+                  "result"
+                ).innerText = `Error: ${result.payload.error}`;
+              }
+            } catch (error) {
+              document.getElementById(
+                "result"
+              ).innerText = `Error: ${error.message}`;
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
